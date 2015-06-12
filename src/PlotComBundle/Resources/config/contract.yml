@@ -1,0 +1,22 @@
+services:
+    resource.contract.collection_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments: [ "@resource.contract", "GET" ]
+
+    resource.contract.item_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.contract", "GET" ]
+
+    resource.contract:
+        parent:    "api.resource"
+        arguments: [ "PlotComBundle\Entity\Contract" ]
+        calls:
+            -      method : "initItemOperations"
+                   arguments: [[ "@resource.contract.item_operation.get" ]]
+            -      method : "initCollectionOperations"
+                   arguments: [[ "@resource.contract.collection_operation.get"]]
+        tags:      [ { name: "api.resource" } ]

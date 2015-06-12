@@ -1,0 +1,154 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Quotes
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Quotes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="contract_id", type="integer")
+     */
+    private $contractId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last", type="decimal")
+     */
+    private $last;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date_utc", type="string", length=255)
+     */
+    private $dateUtc;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set contractId
+     *
+     * @param integer $contractId
+     * @return Quotes
+     */
+    public function setContractId($contractId)
+    {
+        $this->contractId = $contractId;
+
+        return $this;
+    }
+
+    /**
+     * Get contractId
+     *
+     * @return integer 
+     */
+    public function getContractId()
+    {
+        return $this->contractId;
+    }
+
+    /**
+     * Set last
+     *
+     * @param string $last
+     * @return Quotes
+     */
+    public function setLast($last)
+    {
+        $this->last = $last;
+
+        return $this;
+    }
+
+    /**
+     * Get last
+     *
+     * @return string 
+     */
+    public function getLast()
+    {
+        return $this->last;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Quotes
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set dateUtc
+     *
+     * @param string $dateUtc
+     * @return Quotes
+     */
+    public function setDateUtc($dateUtc)
+    {
+        $this->dateUtc = $dateUtc;
+
+        return $this;
+    }
+
+    /**
+     * Get dateUtc
+     *
+     * @return string 
+     */
+    public function getDateUtc()
+    {
+        return $this->dateUtc;
+    }
+}

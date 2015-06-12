@@ -1,0 +1,22 @@
+services:
+    resource.commodity.collection_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments: [ "@resource.commodity", "GET" ]
+
+    resource.commodity.item_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.commodity", "GET" ]
+
+    resource.commodity:
+        parent:    "api.resource"
+        arguments: [ "PlotComBundle\Entity\Commodity" ]
+        calls:
+            -      method : "initItemOperations"
+                   arguments: [[ "@resource.commodity.item_operation.get" ]]
+            -      method : "initCollectionOperations"
+                   arguments: [[ "@resource.commodity.collection_operation.get"]]
+        tags:      [ { name: "api.resource" } ]

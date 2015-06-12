@@ -1,0 +1,22 @@
+services:
+    resource.fertilizer.collection_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments: [ "@resource.fertilizer", "GET" ]
+
+    resource.fertilizer.item_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.fertilizer", "GET" ]
+
+    resource.fertilizer:
+        parent:    "api.resource"
+        arguments: [ "PlotComBundle\Entity\Fertilizer" ]
+        calls:
+            -      method : "initItemOperations"
+                   arguments: [[ "@resource.fertilizer.item_operation.get" ]]
+            -      method : "initCollectionOperations"
+                   arguments: [[ "@resource.fertilizer.collection_operation.get"]]
+        tags:      [ { name: "api.resource" } ]

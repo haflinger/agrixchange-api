@@ -1,0 +1,5 @@
+services:
+    resource.cultureplot:
+        parent:    "api.resource"
+        arguments: [ "PlotComBundle\Entity\CulturePlot" ]
+        tags:      [ { name: "api.resource" } ]

@@ -1,0 +1,22 @@
+services:
+    resource.phyto.collection_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments: [ "@resource.phyto", "GET" ]
+
+    resource.phyto.item_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.phyto", "GET" ]
+
+    resource.phyto:
+        parent:    "api.resource"
+        arguments: [ "PlotComBundle\\Entity\\Phyto" ]
+        calls:
+            -      method : "initItemOperations"
+                   arguments: [[ "@resource.phyto.item_operation.get" ]]
+            -      method : "initCollectionOperations"
+                   arguments: [[ "@resource.phyto.collection_operation.get"]]
+        tags:      [ { name: "api.resource" } ]

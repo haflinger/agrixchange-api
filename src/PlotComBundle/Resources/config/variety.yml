@@ -1,0 +1,22 @@
+services:
+    resource.variety.collection_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments: [ "@resource.variety", "GET" ]
+
+    resource.variety.item_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.variety", "GET" ]
+
+    resource.variety:
+        parent:    "api.resource"
+        arguments: [ "PlotComBundle\Entity\Variety" ]
+        calls:
+            -      method : "initItemOperations"
+                   arguments: [[ "@resource.variety.item_operation.get" ]]
+            -      method : "initCollectionOperations"
+                   arguments: [[ "@resource.variety.collection_operation.get"]]
+        tags:      [ { name: "api.resource" } ]

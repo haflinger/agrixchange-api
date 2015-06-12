@@ -1,0 +1,5 @@
+services:
+    resource.work:
+        parent:    "api.resource"
+        arguments: [ "PlotComBundle\\Entity\\Work" ]
+        tags:      [ { name: "api.resource" } ]

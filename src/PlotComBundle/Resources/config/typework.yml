@@ -1,0 +1,22 @@
+services:
+    resource.typework.collection_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments: [ "@resource.typework", "GET" ]
+
+    resource.typework.item_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.typework", "GET" ]
+
+    resource.typework:
+        parent:    "api.resource"
+        arguments: [ "PlotComBundle\Entity\Typework" ]
+        calls:
+            -      method : "initItemOperations"
+                   arguments: [[ "@resource.typework.item_operation.get" ]]
+            -      method : "initCollectionOperations"
+                   arguments: [[ "@resource.typework.collection_operation.get"]]
+        tags:      [ { name: "api.resource" } ]

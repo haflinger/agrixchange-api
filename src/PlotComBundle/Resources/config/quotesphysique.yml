@@ -1,0 +1,22 @@
+services:
+    resource.quotesphysique.collection_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments: [ "@resource.quotesphysique", "GET" ]
+
+    resource.quotesphysique.item_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.quotesphysique", "GET" ]
+
+    resource.quotesphysique:
+        parent:    "api.resource"
+        arguments: [ "PlotComBundle\Entity\QuotesPhysique" ]
+        calls:
+            -      method : "initItemOperations"
+                   arguments: [[ "@resource.quotesphysique.item_operation.get" ]]
+            -      method : "initCollectionOperations"
+                   arguments: [[ "@resource.quotesphysique.collection_operation.get"]]
+        tags:      [ { name: "api.resource" } ]

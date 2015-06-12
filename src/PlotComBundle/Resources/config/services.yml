@@ -1,0 +1,14 @@
+imports:
+    - { resource: commodity.yml }
+    - { resource: contract.yml }
+    - { resource: cultureplot.yml }
+    - { resource: fertilizer.yml }
+    - { resource: typework.yml }
+    - { resource: method.yml }
+    - { resource: phyto.yml }
+    - { resource: plot.yml }
+    - { resource: quotesmatif.yml }
+    - { resource: quotesphysique.yml }
+    - { resource: soil.yml }
+    - { resource: variety.yml }
+    - { resource: work.yml }

@@ -1,0 +1,368 @@
+<?php
+
+namespace PlotComBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Work
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Work
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="typework_id", type="integer")
+     */
+    private $typeworkId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cultureplot_id", type="integer")
+     */
+    private $cultureplotId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="infos", type="text")
+     */
+    private $infos;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_begin", type="datetime")
+     */
+    private $dateBegin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_end", type="datetime")
+     */
+    private $dateEnd;
+
+    /**
+     * @var \PlotComBundle\Entity\Typework
+     *
+     * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\TypeWork")
+     * @ORM\JoinColumn(name="typework_id",referencedColumnName="id", nullable=false)
+     *
+     */
+    private $typework;
+
+    /**
+     * @var \PlotComBundle\Entity\CulturePlot
+     *
+     * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\CulturePlot")
+     * @ORM\JoinColumn(name="cultureplot_id",referencedColumnName="id", nullable=false)
+     *
+     */
+    private $cultureplot;
+
+    /**
+     * @var WorkPhyto
+     *
+     * @ORM\OneToMany(targetEntity="PlotComBundle\Entity\WorkPhyto", mappedBy="work",cascade={"persist"})
+     *
+     */
+
+    private $workphytos;
+
+    /**
+     * @var WorkFertilizer
+     *
+     * @ORM\OneToMany(targetEntity="PlotComBundle\Entity\WorkFertilizer", mappedBy="work",cascade={"persist"})
+     *
+     */
+
+    private $workfertilizers;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Work
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set typeworkId
+     *
+     * @param integer $typeworkId
+     * @return Work
+     */
+    public function setTypeworkId($typeworkId)
+    {
+        $this->typeworkId = $typeworkId;
+
+        return $this;
+    }
+
+    /**
+     * Get typeworkId
+     *
+     * @return integer 
+     */
+    public function getTypeworkId()
+    {
+        return $this->typeworkId;
+    }
+
+    /**
+     * Set cultureplotId
+     *
+     * @param integer $cultureplotId
+     * @return Work
+     */
+    public function setCultureplotId($cultureplotId)
+    {
+        $this->cultureplotId = $cultureplotId;
+
+        return $this;
+    }
+
+    /**
+     * Get cultureplotId
+     *
+     * @return integer 
+     */
+    public function getCultureplotId()
+    {
+        return $this->cultureplotId;
+    }
+
+    /**
+     * Set infos
+     *
+     * @param string $infos
+     * @return Work
+     */
+    public function setInfos($infos)
+    {
+        $this->infos = $infos;
+
+        return $this;
+    }
+
+    /**
+     * Get infos
+     *
+     * @return string 
+     */
+    public function getInfos()
+    {
+        return $this->infos;
+    }
+
+    /**
+     * Set dateBegin
+     *
+     * @param \DateTime $dateBegin
+     * @return Work
+     */
+    public function setDateBegin($dateBegin)
+    {
+        $this->dateBegin = $dateBegin;
+
+        return $this;
+    }
+
+    /**
+     * Get dateBegin
+     *
+     * @return \DateTime 
+     */
+    public function getDateBegin()
+    {
+        return $this->dateBegin;
+    }
+
+    /**
+     * Set dateEnd
+     *
+     * @param \DateTime $dateEnd
+     * @return Work
+     */
+    public function setDateEnd($dateEnd)
+    {
+        $this->dateEnd = $dateEnd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEnd
+     *
+     * @return \DateTime 
+     */
+    public function getDateEnd()
+    {
+        return $this->dateEnd;
+    }
+
+    /**
+     * Set typework
+     *
+     * @param \PlotComBundle\Entity\TypeWork $typework
+     * @return Work
+     */
+    public function setTypework(\PlotComBundle\Entity\TypeWork $typework)
+    {
+        $this->typework = $typework;
+
+        return $this;
+    }
+
+    /**
+     * Get typework
+     *
+     * @return \PlotComBundle\Entity\TypeWork 
+     */
+    public function getTypework()
+    {
+        return $this->typework;
+    }
+
+    /**
+     * Set cultureplot
+     *
+     * @param \PlotComBundle\Entity\CulturePlot $cultureplot
+     * @return Work
+     */
+    public function setCultureplot(\PlotComBundle\Entity\CulturePlot $cultureplot)
+    {
+        $this->cultureplot = $cultureplot;
+
+        return $this;
+    }
+
+    /**
+     * Get cultureplot
+     *
+     * @return \PlotComBundle\Entity\CulturePlot 
+     */
+    public function getCultureplot()
+    {
+        return $this->cultureplot;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->workphytos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add workphytos
+     *
+     * @param \PlotComBundle\Entity\WorkPhyto $workphytos
+     * @return Work
+     */
+    public function addWorkphyto(\PlotComBundle\Entity\WorkPhyto $workphytos)
+    {
+        $this->workphytos[] = $workphytos;
+
+        return $this;
+    }
+
+    /**
+     * Remove workphytos
+     *
+     * @param \PlotComBundle\Entity\WorkPhyto $workphytos
+     */
+    public function removeWorkphyto(\PlotComBundle\Entity\WorkPhyto $workphytos)
+    {
+        $this->workphytos->removeElement($workphytos);
+    }
+
+    /**
+     * Get workphytos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getWorkphytos()
+    {
+        return $this->workphytos;
+    }
+
+    /**
+     * Add workfertilizers
+     *
+     * @param \PlotComBundle\Entity\WorkFertilizer $workfertilizers
+     * @return Work
+     */
+    public function addWorkfertilizer(\PlotComBundle\Entity\WorkFertilizer $workfertilizers)
+    {
+        $this->workfertilizers[] = $workfertilizers;
+
+        return $this;
+    }
+
+    /**
+     * Remove workfertilizers
+     *
+     * @param \PlotComBundle\Entity\WorkFertilizer $workfertilizers
+     */
+    public function removeWorkfertilizer(\PlotComBundle\Entity\WorkFertilizer $workfertilizers)
+    {
+        $this->workfertilizers->removeElement($workfertilizers);
+    }
+
+    /**
+     * Get workfertilizers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getWorkfertilizers()
+    {
+        return $this->workfertilizers;
+    }
+}
