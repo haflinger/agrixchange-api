@@ -1,0 +1,32 @@
+services:
+    resource.user.item_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.user", "GET" ]
+
+    resource.user.item_operation.put:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.user", "PUT" ]
+
+    resource.user.item_operation.custom_user_get:
+        class:   "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:  false
+        factory: [ "@api.operation_factory", "createItemOperation" ]
+        arguments:
+            -    "@resource.user"               # Resource
+            -    [ "GET" ]                 # Methods
+            -    "users/me" # Path
+            -    "UserBundle:User:getMe"         # Controller
+            -    "api_user_customget"                 # Route name
+
+    resource.user:
+        parent:    "api.resource"
+        arguments: [ "UserBundle\\Entity\\User" ]
+        calls:
+            -      [ "initItemOperations", [ [ "@resource.user.item_operation.custom_user_get","@resource.user.item_operation.put","@resource.user.item_operation.get"] ] ]
+
+
+        tags:      [ { name: "api.resource" } ]
