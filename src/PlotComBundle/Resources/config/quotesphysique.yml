@@ -19,4 +19,5 @@ services:
                    arguments: [[ "@resource.quotesphysique.item_operation.get" ]]
             -      method : "initCollectionOperations"
                    arguments: [[ "@resource.quotesphysique.collection_operation.get"]]
+
         tags:      [ { name: "api.resource" } ]

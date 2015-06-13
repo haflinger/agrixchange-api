@@ -1,5 +1,47 @@
 services:
+    resource.cultureplot.order_filter:
+        parent:    "api.doctrine.orm.order_filter"
+        arguments: [ ~ ] # This line can also be omitted
+
+    resource.cultureplot.collection_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.cultureplot", "GET" ]
+
+    resource.cultureplot.item_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.cultureplot", "GET" ]
+
+    resource.cultureplot.item_operation.put:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.cultureplot", "PUT" ]
+
+    resource.cultureplot.item_operation.delete:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createItemOperation" ]
+        arguments: [ "@resource.cultureplot", "DELETE" ]
+
+    resource.cultureplot.collection_operation.user.get:
+            class:   "Dunglas\ApiBundle\Api\Operation\Operation"
+            public:  false
+            factory: [ "@api.operation_factory", "createItemOperation" ]
+            arguments:
+                -    "@resource.cultureplot"               # Resource
+                -    [ "GET" ]                 # Methods
+                -    "/culture_plots/{plotid}/user" # Path
+                -    "PlotComBundle:CulturePlot:getUser"         # Controller
+                -    "cultureplot_user_get"                 # Route name
+
+
     resource.cultureplot:
         parent:    "api.resource"
-        arguments: [ "PlotComBundle\Entity\CulturePlot" ]
+        arguments: [ "PlotComBundle\\Entity\\CulturePlot" ]
+        calls:
+            -      [ "initItemOperations", [ [ "@resource.cultureplot.collection_operation.user.get","@resource.cultureplot.item_operation.get","@resource.cultureplot.item_operation.delete","@resource.cultureplot.item_operation.put"] ] ]
         tags:      [ { name: "api.resource" } ]

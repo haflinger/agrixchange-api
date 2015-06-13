@@ -66,7 +66,7 @@ class Work
     /**
      * @var \PlotComBundle\Entity\Typework
      *
-     * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\TypeWork")
+     * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\Typework")
      * @ORM\JoinColumn(name="typework_id",referencedColumnName="id", nullable=false)
      *
      */
@@ -250,10 +250,10 @@ class Work
     /**
      * Set typework
      *
-     * @param \PlotComBundle\Entity\TypeWork $typework
+     * @param \PlotComBundle\Entity\Typework $typework
      * @return Work
      */
-    public function setTypework(\PlotComBundle\Entity\TypeWork $typework)
+    public function setTypework(\PlotComBundle\Entity\Typework $typework)
     {
         $this->typework = $typework;
 

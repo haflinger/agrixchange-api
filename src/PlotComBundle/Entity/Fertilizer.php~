@@ -61,20 +61,13 @@ class Fertilizer
     /**
      * @var \PlotComBundle\Entity\Typework
      *
-     * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\TypeWork")
+     * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\Typework")
      * @ORM\JoinColumn(name="typework_id",referencedColumnName="id")
      *
      */
     private $typework;
 
-    /**
-     * @var WorkFertilizer
-     *
-     * @ORM\OneToMany(targetEntity="PlotComBundle\Entity\WorkFertilizer", mappedBy="fertilizer",cascade={"persist"})
-     *
-     */
 
-    private $workfertilizers;
 
     /**
      * Get id
@@ -204,10 +197,10 @@ class Fertilizer
     /**
      * Set typework
      *
-     * @param \PlotComBundle\Entity\TypeWork $typework
+     * @param \PlotComBundle\Entity\Typework $typework
      * @return Fertilizer
      */
-    public function setTypework(\PlotComBundle\Entity\TypeWork $typework)
+    public function setTypework(\PlotComBundle\Entity\Typework $typework)
     {
         $this->typework = $typework;
 
@@ -223,44 +216,5 @@ class Fertilizer
     {
         return $this->typework;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->workfertilizers = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
-    /**
-     * Add workfertilizers
-     *
-     * @param \PlotComBundle\Entity\WorkFertilizer $workfertilizers
-     * @return Fertilizer
-     */
-    public function addWorkfertilizer(\PlotComBundle\Entity\WorkFertilizer $workfertilizers)
-    {
-        $this->workfertilizers[] = $workfertilizers;
-
-        return $this;
-    }
-
-    /**
-     * Remove workfertilizers
-     *
-     * @param \PlotComBundle\Entity\WorkFertilizer $workfertilizers
-     */
-    public function removeWorkfertilizer(\PlotComBundle\Entity\WorkFertilizer $workfertilizers)
-    {
-        $this->workfertilizers->removeElement($workfertilizers);
-    }
-
-    /**
-     * Get workfertilizers
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getWorkfertilizers()
-    {
-        return $this->workfertilizers;
-    }
 }

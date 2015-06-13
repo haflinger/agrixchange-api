@@ -5,12 +5,12 @@ namespace PlotComBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Typework
+ * Campagne
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Typework
+class Campagne
 {
     /**
      * @var integer
@@ -43,7 +43,7 @@ class Typework
      * Set name
      *
      * @param string $name
-     * @return Typework
+     * @return Campagne
      */
     public function setName($name)
     {

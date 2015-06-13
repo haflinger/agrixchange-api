@@ -130,20 +130,13 @@ class Phyto
     /**
      * @var \PlotComBundle\Entity\Typework
      *
-     * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\TypeWork")
+     * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\Typework")
      * @ORM\JoinColumn(name="typework_id",referencedColumnName="id", nullable=false)
      *
      */
     private $typework;
 
-    /**
-     * @var WorkPhyto
-     *
-     * @ORM\OneToMany(targetEntity="PlotComBundle\Entity\WorkPhyto", mappedBy="phyto",cascade={"persist"})
-     *
-     */
 
-    private $workphytos;
 
     /**
      * Get id
@@ -503,10 +496,10 @@ class Phyto
     /**
      * Set typework
      *
-     * @param \PlotComBundle\Entity\TypeWork $typework
+     * @param \PlotComBundle\Entity\Typework $typework
      * @return Phyto
      */
-    public function setTypework(\PlotComBundle\Entity\TypeWork $typework)
+    public function setTypework(\PlotComBundle\Entity\Typework $typework)
     {
         $this->typework = $typework;
 
@@ -516,50 +509,13 @@ class Phyto
     /**
      * Get typework
      *
-     * @return \PlotComBundle\Entity\TypeWork 
+     * @return \PlotComBundle\Entity\Typework
      */
     public function getTypework()
     {
         return $this->typework;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->workphytos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
-    /**
-     * Add workphytos
-     *
-     * @param \PlotComBundle\Entity\WorkPhyto $workphytos
-     * @return Phyto
-     */
-    public function addWorkphyto(\PlotComBundle\Entity\WorkPhyto $workphytos)
-    {
-        $this->workphytos[] = $workphytos;
 
-        return $this;
-    }
 
-    /**
-     * Remove workphytos
-     *
-     * @param \PlotComBundle\Entity\WorkPhyto $workphytos
-     */
-    public function removeWorkphyto(\PlotComBundle\Entity\WorkPhyto $workphytos)
-    {
-        $this->workphytos->removeElement($workphytos);
-    }
-
-    /**
-     * Get workphytos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getWorkphytos()
-    {
-        return $this->workphytos;
-    }
 }

@@ -1,5 +1,45 @@
 services:
+    resource.work.order_filter:
+        parent:    "api.doctrine.orm.order_filter"
+        arguments: [ ~ ] # This line can also be omitted
+
+    resource.work.collection_operation.get:
+            class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+            public:    false
+            factory:   [ "@api.operation_factory", "createItemOperation" ]
+            arguments: [ "@resource.work", "GET" ]
+
+    resource.work.item_operation.get:
+            class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+            public:    false
+            factory:   [ "@api.operation_factory", "createItemOperation" ]
+            arguments: [ "@resource.work", "GET" ]
+
+    resource.work.item_operation.put:
+            class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+            public:    false
+            factory:   [ "@api.operation_factory", "createItemOperation" ]
+            arguments: [ "@resource.work", "PUT" ]
+
+    resource.work.item_operation.delete:
+                class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+                public:    false
+                factory:   [ "@api.operation_factory", "createItemOperation" ]
+                arguments: [ "@resource.work", "DELETE" ]
+
+    resource.work.collection_operation.user.get:
+        class:   "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:  false
+        factory: [ "@api.operation_factory", "createItemOperation" ]
+        arguments:
+            -    "@resource.work"               # Resource
+            -    [ "GET" ]                 # Methods
+            -    "/works/{cultureplotid}/user" # Path
+            -    "PlotComBundle:Work:getUser"         # Controller
+            -    "work_user_get"                 # Route name
     resource.work:
         parent:    "api.resource"
         arguments: [ "PlotComBundle\\Entity\\Work" ]
+        calls:
+            -      [ "initItemOperations", [ [ "@resource.work.collection_operation.user.get","@resource.work.item_operation.get","@resource.work.item_operation.delete","@resource.work.item_operation.put"] ] ]
         tags:      [ { name: "api.resource" } ]

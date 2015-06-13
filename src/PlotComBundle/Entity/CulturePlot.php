@@ -79,6 +79,12 @@ class CulturePlot
     private $dateUpdate;
 
     /**
+     * @var \Integer
+     *
+     * @ORM\Column(name="campagne_id", type="integer")
+     */
+    private $campagneId;
+    /**
      * @var \PlotComBundle\Entity\Commodity
      *
      * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\Commodity")
@@ -132,6 +138,15 @@ class CulturePlot
      *
      */
     private $user;
+
+    /**
+     * @var \PlotComBundle\Entity\Campagne
+     *
+     * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\Campagne")
+     * @ORM\JoinColumn(name="campagne_id",referencedColumnName="id", nullable=true)
+     *
+     */
+    private $campagne;
 
     /**
      * Get id
@@ -467,5 +482,51 @@ class CulturePlot
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set campagneId
+     *
+     * @param integer $campagneId
+     * @return CulturePlot
+     */
+    public function setCampagneId($campagneId)
+    {
+        $this->campagneId = $campagneId;
+
+        return $this;
+    }
+
+    /**
+     * Get campagneId
+     *
+     * @return integer 
+     */
+    public function getCampagneId()
+    {
+        return $this->campagneId;
+    }
+
+    /**
+     * Set campagne
+     *
+     * @param \PlotComBundle\Entity\Campagne $campagne
+     * @return CulturePlot
+     */
+    public function setCampagne(\PlotComBundle\Entity\Campagne $campagne = null)
+    {
+        $this->campagne = $campagne;
+
+        return $this;
+    }
+
+    /**
+     * Get campagne
+     *
+     * @return \PlotComBundle\Entity\Campagne
+     */
+    public function getCampagne()
+    {
+        return $this->campagne;
     }
 }

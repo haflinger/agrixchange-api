@@ -7,7 +7,7 @@
 #
 # Hôte: 127.0.0.1 (MySQL 5.6.23-1~dotdeb.3)
 # Base de données: agrigestion
-# Temps de génération: 2015-06-12 22:24:17 +0000
+# Temps de génération: 2015-06-13 06:35:19 +0000
 # ************************************************************
 
 
@@ -72,6 +72,31 @@ CREATE TABLE `AuthCode` (
   CONSTRAINT `FK_F1D7D177A76ED395` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+
+
+# Affichage de la table Campagne
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `Campagne`;
+
+CREATE TABLE `Campagne` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `Campagne` WRITE;
+/*!40000 ALTER TABLE `Campagne` DISABLE KEYS */;
+
+INSERT INTO `Campagne` (`id`, `name`)
+VALUES
+	(1,'2015/2016'),
+	(2,'2016/2017'),
+	(3,'2017/2018'),
+	(4,'2018/2019');
+
+/*!40000 ALTER TABLE `Campagne` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Affichage de la table Client
@@ -199,6 +224,7 @@ CREATE TABLE `CulturePlot` (
   `method_id` int(11) NOT NULL,
   `date_add` datetime NOT NULL,
   `date_update` datetime NOT NULL,
+  `campagne_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_30A539D4B4ACC212` (`commodity_id`),
   KEY `IDX_30A539D478C2BC47` (`variety_id`),
@@ -206,6 +232,8 @@ CREATE TABLE `CulturePlot` (
   KEY `IDX_30A539D4680D0B01` (`plot_id`),
   KEY `IDX_30A539D419883967` (`method_id`),
   KEY `IDX_30A539D4A76ED395` (`user_id`),
+  KEY `IDX_30A539D416227374` (`campagne_id`),
+  CONSTRAINT `FK_30A539D416227374` FOREIGN KEY (`campagne_id`) REFERENCES `Campagne` (`id`),
   CONSTRAINT `FK_30A539D419883967` FOREIGN KEY (`method_id`) REFERENCES `Method` (`id`),
   CONSTRAINT `FK_30A539D4680D0B01` FOREIGN KEY (`plot_id`) REFERENCES `Plot` (`id`),
   CONSTRAINT `FK_30A539D478C2BC47` FOREIGN KEY (`variety_id`) REFERENCES `Variety` (`id`),
@@ -14132,7 +14160,10 @@ CREATE TABLE `Plot` (
   `area` decimal(5,2) NOT NULL,
   `geojson` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:json_array)',
   `enabled` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_1E8920B7A76ED395` (`user_id`),
+  CONSTRAINT `FK_1E8920B7A76ED395` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
