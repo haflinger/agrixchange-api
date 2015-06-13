@@ -110,7 +110,8 @@ class Plot
      */
     public function setArea($area)
     {
-        $this->area = $area;
+        /*$this->area = $area;*/
+        $this->area = rand(10.4,15.6);
 
         return $this;
     }
@@ -156,7 +157,9 @@ class Plot
      */
     public function setEnabled($enabled)
     {
-        $this->enabled = $enabled;
+        //$this->enabled = $enabled;
+        $this->enabled = 1;
+
 
         return $this;
     }
