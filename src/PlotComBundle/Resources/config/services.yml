@@ -13,3 +13,4 @@ imports:
     - { resource: variety.yml }
     - { resource: work.yml }
     - { resource: listener.yml }
+    - { resource: user.yml }
