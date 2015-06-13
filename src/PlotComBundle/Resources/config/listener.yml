@@ -1,6 +1,6 @@
 services:
   api_listener_prePersist:
       class:  PlotComBundle\Listener\ApiListener
-      arguments: [@service_container]
+      arguments: [@security.token_storage]
       tags:
           - { name: kernel.event_listener, event: api.pre_create, method: prePersist }

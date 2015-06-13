@@ -1,7 +1,7 @@
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
-    role_hierarchy: ~
+    role_hierarchy: [ROLE_USER]
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username_email
@@ -17,13 +17,13 @@ security:
                 provider: fos_userbundle
                 check_path: fos_user_security_check
                 login_path: fos_user_security_login
-            anonymous : true
+            anonymous : false
 
         api:
             pattern:    ^/api/v1
             fos_oauth:  true
             stateless:  true
-            anonymous:  true # can be omitted as its default value
+            anonymous:  false # can be omitted as its default value
 
         main:
             pattern: .*
@@ -44,7 +44,7 @@ security:
             logout:
                 path: fos_user_security_logout
                 target: /
-            anonymous:    true
+            anonymous: true
 
     access_control:
         #- { path: ^/api/v1, roles: [ IS_AUTHENTICATED_FULLY ] }

@@ -49,7 +49,7 @@ class Plot
      *
      * @ORM\Column(name="enabled", type="boolean", nullable = true)
      */
-    private $enabled;
+    private $enabled=true;
 
 
     /**
@@ -63,7 +63,7 @@ class Plot
      * @var \UserBundle\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id",referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      *
      */
     private $user;
@@ -111,7 +111,7 @@ class Plot
     public function setArea($area)
     {
         /*$this->area = $area;*/
-        $this->area = 12;
+        $this->area = round($area/10000,2);
 
         return $this;
     }
@@ -157,9 +157,7 @@ class Plot
      */
     public function setEnabled($enabled)
     {
-        //$this->enabled = $enabled;
-        $this->enabled = true;
-
+        $this->enabled = $enabled;
 
         return $this;
     }

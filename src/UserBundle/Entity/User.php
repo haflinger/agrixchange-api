@@ -30,7 +30,7 @@ class User extends BaseUser
     }
 
     /**
-     * @var string Lastname of the person
+     * @var string
      *
      * @ORM\Column(type="string", nullable=false, length=55)
      */

@@ -9,17 +9,18 @@ use PlotComBundle\Entity\CulturePlot;
 use PlotComBundle\Entity\Plot;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ApiListener  {
 
     protected $token_storage;
 
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(TokenStorageInterface $token)
     {
 
-        $this->token_storage = $container->get('security.token_storage');
+        $this->token_storage = $token;
         $this->_classnamesUser = Array(
 
             $plot = new Plot(),
@@ -49,10 +50,10 @@ class ApiListener  {
     {
 
         $entity = $event->getData();
-        $user =  2;
+        $user =  $this->token_storage->getToken()->getUser();
 
         if ($this->isInstanceOf($entity, $this->_classnamesUser)) {
-            $entity->setUserId(2);
+            $entity->setUser($user);
         }
 
     }
