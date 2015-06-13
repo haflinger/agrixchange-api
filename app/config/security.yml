@@ -23,7 +23,7 @@ security:
             pattern:    ^/api/v1
             fos_oauth:  true
             stateless:  true
-            anonymous:  false # can be omitted as its default value
+            anonymous:  true # can be omitted as its default value
 
         main:
             pattern: .*

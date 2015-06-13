@@ -37,8 +37,6 @@ services:
                 -    "/plots/user" # Path
                 -    "PlotComBundle:Plot:getUser"         # Controller
                 -    "plot_user_get"                 # Route name
-
-
     resource.plot:
         parent:    "api.resource"
         arguments: [ "PlotComBundle\\Entity\\Plot" ]

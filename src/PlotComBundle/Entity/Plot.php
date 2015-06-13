@@ -68,6 +68,13 @@ class Plot
      */
     private $user;
 
+    /**
+     * @var integer
+     *
+     *
+     */
+
+
 
     /**
      * Get id
@@ -75,6 +82,16 @@ class Plot
      * @return integer 
      */
     public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set id
+     *
+     * @return integer
+     */
+    public function setId()
     {
         return $this->id;
     }

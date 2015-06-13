@@ -24,6 +24,7 @@ class ApiListener  {
         $this->_classnamesUser = Array(
 
             $plot = new Plot(),
+
             $cultureplot = new CulturePlot()
 
         );
