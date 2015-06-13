@@ -7,7 +7,7 @@
 #
 # Hôte: 127.0.0.1 (MySQL 5.6.23-1~dotdeb.3)
 # Base de données: agrigestion
-# Temps de génération: 2015-06-13 06:35:19 +0000
+# Temps de génération: 2015-06-13 10:55:39 +0000
 # ************************************************************
 
 
@@ -45,7 +45,9 @@ LOCK TABLES `AccessToken` WRITE;
 
 INSERT INTO `AccessToken` (`id`, `client_id`, `user_id`, `token`, `expires_at`, `scope`)
 VALUES
-	(1,2,2,'OWRjOWY0MGExZDY2OTE1ODc2NTUzYzBkNDczNTU5YmUzOTg1YjIzZmYyMDk5NzZjZTIzZjlhNGExOWJmNDRhNg',1434506674,NULL);
+	(1,2,2,'OWRjOWY0MGExZDY2OTE1ODc2NTUzYzBkNDczNTU5YmUzOTg1YjIzZmYyMDk5NzZjZTIzZjlhNGExOWJmNDRhNg',1434506674,NULL),
+	(2,2,2,'YjEyNmUwNWFiZmRiNWE4OTZiYzY1ZGMyYTY1OWQ0MzJkY2EzYzQ4NDlhYjNmZmUxZTY5MzE3MzBmZDkwYjkzZA',1434551520,NULL),
+	(3,2,2,'MjhhMmYyMTc5OGY0NzAwNThkZDU5OGMyYjM3MjhlNjMwYTllOTNjZmQxNjU0ZmI4MGU3YjFlYWQxZDMzZTFkMg',1434551583,NULL);
 
 /*!40000 ALTER TABLE `AccessToken` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -20545,7 +20547,9 @@ LOCK TABLES `RefreshToken` WRITE;
 
 INSERT INTO `RefreshToken` (`id`, `client_id`, `user_id`, `token`, `expires_at`, `scope`)
 VALUES
-	(1,2,2,'OTM3MWUyYjU3YjJhMDY2NzYxMDEyNTllMTE3ZjdlNDEyZTdjOTlhYWVmZGNjMTM5YjdlMWFkYmExNjFiMmI2Nw',1434866674,NULL);
+	(1,2,2,'OTM3MWUyYjU3YjJhMDY2NzYxMDEyNTllMTE3ZjdlNDEyZTdjOTlhYWVmZGNjMTM5YjdlMWFkYmExNjFiMmI2Nw',1434866674,NULL),
+	(2,2,2,'ZWM1NTZkZmEzZjI0YjdkMTU4ZTE2N2Y1ZjEzZmQ0YzFiZDc1OTk1OGQ2N2QzYjE5YTNmOTEzZWI5ZTc4ZDlhNg',1434911520,NULL),
+	(3,2,2,'YWZmZjBlMzUwNTVkNGZkZWIwYjMzZjFkOTcwNmFmNjE3NTljMzI3OWVmOTk3N2I3NzM1YjViODA0Yzc4M2JhNg',1434911583,NULL);
 
 /*!40000 ALTER TABLE `RefreshToken` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -20625,6 +20629,9 @@ CREATE TABLE `User` (
   `roles` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)',
   `credentials_expired` tinyint(1) NOT NULL,
   `credentials_expire_at` datetime DEFAULT NULL,
+  `lastname` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
+  `firstname` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
+  `mobile` varchar(55) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_2DA1797792FC23A8` (`username_canonical`),
   UNIQUE KEY `UNIQ_2DA17977A0D96FBF` (`email_canonical`)
@@ -20633,11 +20640,11 @@ CREATE TABLE `User` (
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
 
-INSERT INTO `User` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`)
+INSERT INTO `User` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`, `lastname`, `firstname`, `mobile`)
 VALUES
-	(2,'bebert','bebert','bebert@agrigestion.dev','bebert@agrigestion.dev',1,'7x9jzavlq4wssggwck80cc8scckcsgc','+uJA/xV+17TRFRpkDyMidyAlBUvb1O0eBN7yOBGpZXs6ai81yq8G15m31y7N6OSodLObdaxY0sd8mvtUd93gPg==',NULL,0,0,NULL,NULL,NULL,'a:0:{}',0,NULL),
-	(3,'marcel','marcel','marcel@agrigestion.dev','marcel@agrigestion.dev',1,'lktc0lrq9fkwskos00ggogc4480s4ks','h8vQ7jVEJ7Jbaotq41Mr89DWWecZLzZBONLUq67A7BumqvUAzyjJUEJ0YhaKg5azQY1WUXrgTBAOh3au2g/TIw==',NULL,0,0,NULL,NULL,NULL,'a:0:{}',0,NULL),
-	(4,'eric','eric','eric@agrigestion.dev','eric@agrigestion.dev',1,'4m2fwucxnnk00sooksk44c8g0kww40g','FUY0OhJ1hGdZSGTUvxsFYGrBefN/ZS+ZCQW54hBonMQD45v7kjoWNOYAefPQola0oKg7CsssLKIoCITC7MRi6w==',NULL,0,0,NULL,NULL,NULL,'a:0:{}',0,NULL);
+	(2,'bebert','bebert','bebert@gmail.com','bebert@gmail.com',1,'7x9jzavlq4wssggwck80cc8scckcsgc','+uJA/xV+17TRFRpkDyMidyAlBUvb1O0eBN7yOBGpZXs6ai81yq8G15m31y7N6OSodLObdaxY0sd8mvtUd93gPg==',NULL,0,0,NULL,NULL,NULL,'a:0:{}',0,NULL,'Pignon','bertrand',NULL),
+	(3,'marcel','marcel','marcel@gmail.com','marcel@gmail.com',1,'lktc0lrq9fkwskos00ggogc4480s4ks','h8vQ7jVEJ7Jbaotq41Mr89DWWecZLzZBONLUq67A7BumqvUAzyjJUEJ0YhaKg5azQY1WUXrgTBAOh3au2g/TIw==',NULL,0,0,NULL,NULL,NULL,'a:0:{}',0,NULL,'Dupont','marcel',NULL),
+	(4,'eric','eric','eric@gmail.com','eric@gmail.com',1,'4m2fwucxnnk00sooksk44c8g0kww40g','FUY0OhJ1hGdZSGTUvxsFYGrBefN/ZS+ZCQW54hBonMQD45v7kjoWNOYAefPQola0oKg7CsssLKIoCITC7MRi6w==',NULL,0,0,NULL,NULL,NULL,'a:0:{}',0,NULL,'Dupond','eric',NULL);
 
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
