@@ -18,7 +18,7 @@ services:
         arguments:
             -    "@resource.user"               # Resource
             -    [ "GET" ]                 # Methods
-            -    "users/me" # Path
+            -    "/users/me" # Path
             -    "UserBundle:User:getMe"         # Controller
             -    "api_user_customget"                 # Route name
 
@@ -27,6 +27,4 @@ services:
         arguments: [ "UserBundle\\Entity\\User" ]
         calls:
             -      [ "initItemOperations", [ [ "@resource.user.item_operation.custom_user_get","@resource.user.item_operation.put","@resource.user.item_operation.get"] ] ]
-
-
         tags:      [ { name: "api.resource" } ]
