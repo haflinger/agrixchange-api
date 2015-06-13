@@ -31,23 +31,23 @@ class Plot
     /**
      * @var string
      *
-     * @ORM\Column(name="area", type="decimal", precision=5, scale=2)
+     * @ORM\Column(name="area", type="decimal", precision=5, scale=2, nullable = true)
      */
     private $area;
 
 
     /**
-     * @var array
+     * @var string
      *
-     * @ORM\Column(name="geojson", type="json_array")
+     * @ORM\Column(name="geojson", type="string",length=255)
      */
 
-    private $geoJson;
+    private $geojson;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="enabled", type="boolean")
+     * @ORM\Column(name="enabled", type="boolean", nullable = true)
      */
     private $enabled;
 
@@ -55,7 +55,7 @@ class Plot
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\Column(name="user_id", type="integer", nullable = true)
      */
     private $userId;
 
@@ -111,7 +111,7 @@ class Plot
     public function setArea($area)
     {
         /*$this->area = $area;*/
-        $this->area = rand(10.4,15.6);
+        $this->area = 12;
 
         return $this;
     }
@@ -129,12 +129,12 @@ class Plot
     /**
      * Set geo
      *
-     * @param array $geo
+     * @param string $geo
      * @return Plot
      */
-    public function setGeoJson($geoJson)
+    public function setGeojson($geojson)
     {
-        $this->geojson = $geoJson;
+        $this->geojson = $geojson;
 
         return $this;
     }
@@ -142,11 +142,11 @@ class Plot
     /**
      * Get geo
      *
-     * @return array
+     * @return string
      */
-    public function getGeoJson()
+    public function getGeojson()
     {
-        return $this->geoJson;
+        return $this->geojson;
     }
 
     /**
@@ -158,7 +158,7 @@ class Plot
     public function setEnabled($enabled)
     {
         //$this->enabled = $enabled;
-        $this->enabled = 1;
+        $this->enabled = true;
 
 
         return $this;

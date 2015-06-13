@@ -49,10 +49,10 @@ class ApiListener  {
     {
 
         $entity = $event->getData();
-        $user =  $this->token_storage->getToken()->getUser();
+        $user =  2;
 
         if ($this->isInstanceOf($entity, $this->_classnamesUser)) {
-            $entity->setUser($user);
+            $entity->setUserId(2);
         }
 
     }
