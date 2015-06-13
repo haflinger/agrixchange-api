@@ -27,7 +27,7 @@ class CulturePlotController extends ResourceController{
 
         $data = $this->getCollectionData($resource, $request);
 
-        if (
+        if(
             $request->get($this->container->getParameter('api.collection.pagination.page_parameter_name')) &&
             0 === count($data)
         ) {

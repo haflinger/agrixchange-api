@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 class FilterbyUserPlot implements FilterInterface{
 
     public function __construct($userId){
+
         $this->userId = $userId;
     }
     public function apply(ResourceInterface $resource,QueryBuilder $query, Request $request){
@@ -32,7 +33,7 @@ class FilterbyUserPlot implements FilterInterface{
     }
 
     public function getDescription(ResourceInterface $resource){
-        return null;
+       return array();
     }
 
 }

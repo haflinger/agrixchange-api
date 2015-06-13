@@ -112,5 +112,5 @@ fos_oauth_server:
     service:
         user_provider: fos_user.user_manager
         options:
-            access_token_lifetime: 360000
-            refresh_token_lifetime: 720000
+            access_token_lifetime: 36000
+            refresh_token_lifetime: 72000

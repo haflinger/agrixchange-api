@@ -22,10 +22,14 @@ class PlotController extends ResourceController{
         $resource = $this->getResource($request);
 
         $class = new FilterbyUserPlot($this->getUser()->getId());
+
         $resource = new Resource($resource->getEntityClass());
+
         $resource->initFilters(array($class));
 
+
         $data = $this->getCollectionData($resource, $request);
+
 
         if (
             $request->get($this->container->getParameter('api.collection.pagination.page_parameter_name')) &&

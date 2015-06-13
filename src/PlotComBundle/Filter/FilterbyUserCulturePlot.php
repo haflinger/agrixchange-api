@@ -35,7 +35,7 @@ class FilterbyUserCulturePlot implements FilterInterface{
     }
 
     public function getDescription(ResourceInterface $resource){
-        return null;
+        return array();
     }
 
 }
