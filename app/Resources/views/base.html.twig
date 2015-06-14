@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agri'X'Change</title>
+
+    <link rel="stylesheet" href="{{ 'assets/css/leaflet.css'}}">
+    <link rel="stylesheet" href="{{ 'assets/css/leaflet.draw.css'}}"">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ 'assets/css/bootstrap.min.css' }}">
+    <link rel="stylesheet" href="{{ 'assets/css/main.css'}}"><link rel="stylesheet" href="{{ 'assets/css/timeline.css'}}">
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="{{ 'assets/css/font-awesome.css' }}">
+    {#{% stylesheets 'assets/css/font-awesome.css'
+    'assets/css/leaflet.css'
+    'assets/css/bootstrap.min.css'
+    'assets/css/leaflet.draw.css'
+    'assets/css/main.css'
+    'assets/css/timeline.css'
+    output='assets/css-compiled/main.css' filter='cssrewrite'%}
+    {% block stylesheets %}#}{#{% endblock %}#}
+    <!-- Leafleat CSS -->
+</head>
+<body>
+{% block nav %}{% include  '::navbar.html.twig' %}{% endblock %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            {% block sidebar %}{% include  '::sidebar.html.twig' %}{% endblock %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% block page %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>
