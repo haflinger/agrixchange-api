@@ -29,8 +29,8 @@ class ApiListener  {
             $plot = new Plot(),
             $cultureplot = new CulturePlot(),
             $group = new GroupDiscuss(),
-            $discuss = new Discuss(),
-            $work = new Work()
+            $discuss = new Discuss()
+
 
         );
 
