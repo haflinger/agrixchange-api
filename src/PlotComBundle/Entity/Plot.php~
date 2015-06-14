@@ -31,31 +31,31 @@ class Plot
     /**
      * @var string
      *
-     * @ORM\Column(name="area", type="decimal", precision=5, scale=2)
+     * @ORM\Column(name="area", type="decimal", precision=5, scale=2, nullable = true)
      */
     private $area;
 
 
     /**
-     * @var array
+     * @var string
      *
-     * @ORM\Column(name="geojson", type="json_array")
+     * @ORM\Column(name="geojson", type="string",length=255)
      */
 
-    private $geoJson;
+    private $geojson;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="enabled", type="boolean")
+     * @ORM\Column(name="enabled", type="boolean", nullable = true)
      */
-    private $enabled;
+    private $enabled=true;
 
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\Column(name="user_id", type="integer", nullable = true)
      */
     private $userId;
 
@@ -63,10 +63,17 @@ class Plot
      * @var \UserBundle\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id",referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      *
      */
     private $user;
+
+    /**
+     * @var integer
+     *
+     *
+     */
+
 
 
     /**
@@ -75,6 +82,16 @@ class Plot
      * @return integer 
      */
     public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set id
+     *
+     * @return integer
+     */
+    public function setId()
     {
         return $this->id;
     }
@@ -110,7 +127,8 @@ class Plot
      */
     public function setArea($area)
     {
-        $this->area = $area;
+        /*$this->area = $area;*/
+        $this->area = round($area/10000,2);
 
         return $this;
     }
@@ -128,12 +146,12 @@ class Plot
     /**
      * Set geo
      *
-     * @param array $geo
+     * @param string $geo
      * @return Plot
      */
-    public function setGeoJson($geoJson)
+    public function setGeojson($geojson)
     {
-        $this->geojson = $geoJson;
+        $this->geojson = $geojson;
 
         return $this;
     }
@@ -141,11 +159,11 @@ class Plot
     /**
      * Get geo
      *
-     * @return array
+     * @return string
      */
-    public function getGeoJson()
+    public function getGeojson()
     {
-        return $this->geoJson;
+        return $this->geojson;
     }
 
     /**
@@ -169,5 +187,51 @@ class Plot
     public function getEnabled()
     {
         return $this->enabled;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     * @return Plot
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \UserBundle\Entity\User $user
+     * @return Plot
+     */
+    public function setUser(\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

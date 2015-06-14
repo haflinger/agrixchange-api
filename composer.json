@@ -13,7 +13,6 @@
         "doctrine/dbal": "<2.5",
         "doctrine/doctrine-bundle": "~1.4",
         "twig/extensions": "~1.0",
-        "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~3.0,>=3.0.12",
@@ -24,7 +23,8 @@
         "nelmio/api-doc-bundle": "~2.9@dev",
         "friendsofsymfony/http-cache-bundle": "~1.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "friendsofsymfony/oauth-server-bundle": "dev-master"
+        "friendsofsymfony/oauth-server-bundle": "dev-master",
+        "symfony/assetic-bundle": "~2.6.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

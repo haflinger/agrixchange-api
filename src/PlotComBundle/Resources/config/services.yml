@@ -15,3 +15,5 @@ imports:
     - { resource: listener.yml }
     - { resource: user.yml }
     - { resource: campagne.yml }
+    - { resource: groupdiscuss.yml }
+    - { resource: discuss.yml }

@@ -1,0 +1,267 @@
+<?php
+
+namespace PlotComBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Discuss
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Discuss
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer")
+     */
+    private $userId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="groupdiscuss_id", type="integer")
+     */
+    private $groupdiscussId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text")
+     */
+    private $message;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date_add", type="datetime")
+     */
+    private $dateAdd;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_update", type="datetime")
+     */
+    private $dateUpdate;
+
+    /**
+     * @var \UserBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
+     *
+     */
+    private $user;
+
+    /**
+     * @var \PlotComBundle\Entity\GroupDiscuss
+     *
+     * @ORM\ManyToOne(targetEntity="PlotComBundle\Entity\GroupDiscuss")
+     * @ORM\JoinColumn(name="groupDiscuss_id",referencedColumnName="id")
+     *
+     */
+    private $groupdiscuss;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     * @return Discuss
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set groupdiscussId
+     *
+     * @param integer $groupdiscussId
+     * @return Discuss
+     */
+    public function setGroupdiscussId($groupdiscussId)
+    {
+        $this->groupdiscussId = $groupdiscussId;
+
+        return $this;
+    }
+
+    /**
+     * Get groupdiscussId
+     *
+     * @return integer 
+     */
+    public function getGroupdiscussId()
+    {
+        return $this->groupdiscussId;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     * @return Discuss
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string 
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set dateAdd
+     *
+     * @param string $dateAdd
+     * @return Discuss
+     */
+    public function setDateAdd($dateAdd)
+    {
+        $this->dateAdd = $dateAdd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAdd
+     *
+     * @return string 
+     */
+    public function getDateAdd()
+    {
+        return $this->dateAdd;
+    }
+
+
+
+    /**
+     * Set dateUpdate
+     *
+     * @param \DateTime $dateUpdate
+     * @return Discuss
+     */
+    public function setDateUpdate($dateUpdate)
+    {
+        $this->dateUpdate = $dateUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get dateUpdate
+     *
+     * @return \DateTime 
+     */
+    public function getDateUpdate()
+    {
+        return $this->dateUpdate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \UserBundle\Entity\User $user
+     * @return Discuss
+     */
+    public function setUser(\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set groupdiscuss
+     *
+     * @param \PlotComBundle\Entity\GroupDiscuss $groupdiscuss
+     * @return Discuss
+     */
+    public function setGroupdiscuss(\PlotComBundle\Entity\GroupDiscuss $groupdiscuss = null)
+    {
+        $this->groupdiscuss = $groupdiscuss;
+
+        return $this;
+    }
+
+    /**
+     * Get groupdiscuss
+     *
+     * @return \PlotComBundle\Entity\GroupDiscuss 
+     */
+    public function getGroupdiscuss()
+    {
+        return $this->groupdiscuss;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function persistDate(){
+
+        $this->setDateAdd(new \DateTime('now'));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate(){
+
+        $this->setDateUpdate(new \DateTime('now'));
+    }
+}

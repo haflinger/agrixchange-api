@@ -6,7 +6,10 @@ namespace PlotComBundle\Listener;
 
 use Dunglas\ApiBundle\Event\DataEvent;
 use PlotComBundle\Entity\CulturePlot;
+use PlotComBundle\Entity\Discuss;
+use PlotComBundle\Entity\GroupDiscuss;
 use PlotComBundle\Entity\Plot;
+use PlotComBundle\Entity\Work;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -24,8 +27,10 @@ class ApiListener  {
         $this->_classnamesUser = Array(
 
             $plot = new Plot(),
-
-            $cultureplot = new CulturePlot()
+            $cultureplot = new CulturePlot(),
+            $group = new GroupDiscuss(),
+            $discuss = new Discuss(),
+            $work = new Work()
 
         );
 

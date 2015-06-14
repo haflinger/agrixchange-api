@@ -1,0 +1,35 @@
+services:
+    resource.groupdiscuss.order_filter:
+        parent:    "api.doctrine.orm.order_filter"
+        arguments: [ ~ ] # This line can also be omitted
+
+    resource.groupdiscuss.collection_operation.get:
+            class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+            public:    false
+            factory:   [ "@api.operation_factory", "createItemOperation" ]
+            arguments: [ "@resource.groupdiscuss", "GET" ]
+
+    resource.groupdiscuss.item_operation.get:
+            class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+            public:    false
+            factory:   [ "@api.operation_factory", "createItemOperation" ]
+            arguments: [ "@resource.groupdiscuss", "GET" ]
+
+    resource.groupdiscuss.item_operation.put:
+            class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+            public:    false
+            factory:   [ "@api.operation_factory", "createItemOperation" ]
+            arguments: [ "@resource.groupdiscuss", "PUT" ]
+
+    resource.groupdiscuss.item_operation.delete:
+                class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+                public:    false
+                factory:   [ "@api.operation_factory", "createItemOperation" ]
+                arguments: [ "@resource.groupdiscuss", "DELETE" ]
+
+    resource.groupdiscuss:
+        parent:    "api.resource"
+        arguments: [ "PlotComBundle\\Entity\\GroupDiscuss" ]
+        calls:
+            -      [ "initItemOperations", [ [ "@resource.groupdiscuss.item_operation.get","@resource.groupdiscuss.item_operation.delete","@resource.groupdiscuss.item_operation.put"] ] ]
+        tags:      [ { name: "api.resource" } ]
